@@ -364,9 +364,9 @@
 
 						<li><a href="{{URL::to('/all-message')}}"><i class="icon-envelope"></i><span class="hidden-tablet">Message</span></a></li>
 
-						<li><a href="typography.html"><i class="icon-font"></i><span class="hidden-tablet"> Shop Name</span></a></li>
+						<li><a href="#"><i class="icon-font"></i><span class="hidden-tablet"> Shop Name</span></a></li>
 
-						<li><a href="gallery.html"><i class="icon-picture"></i><span class="hidden-tablet"> Delivery Man</span></a></li>
+						<li><a href="#"><i class="icon-picture"></i><span class="hidden-tablet"> Delivery Man</span></a></li>
 
 					
 					</ul>
