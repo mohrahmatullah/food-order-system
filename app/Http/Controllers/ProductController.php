@@ -124,6 +124,7 @@ class ProductController extends Controller
                      ->first();
        $product_info=view('admin.edit_product')
                 ->with('product_info',$product_info);
+
        return view('admin_layout')
                 ->with('admin.edit_product',$product_info);
     }
@@ -139,29 +140,33 @@ class ProductController extends Controller
          $data['product_price']=$request->product_price;
          $data['product_size']=$request->product_size;
          $data['product_color']=$request->product_color;
+         // dd($data);
         $image=$request->file('product_image');
-    if ($image) {
-       $image_name=str_random(20);
-       $ext=strtolower($image->getClientOriginalExtension());
-       $image_full_name=$image_name.'.'.$ext;
-       $upload_path='image/';
-       $image_url=$upload_path.$image_full_name;
-       $success=$image->move($upload_path,$image_full_name);
-       if ($success) {
-         $data['product_image']=$image_url;
-            DB::table('tbl_products')->insert($data);
-            Session::put('message','Product added successfully!!');
-            return Redirect::to('/add-product');
-         // echo "<pre>";
-         // print_r($data);
-         // echo "</pre>";
-         // exit();
-            
-       }
-       // else{
+          if ($image) {
+             $image_name=str_random(20);
+             $ext=strtolower($image->getClientOriginalExtension());
+             $image_full_name=$image_name.'.'.$ext;
+             $upload_path='image/';
+             $image_url=$upload_path.$image_full_name;
+             $success=$image->move($upload_path,$image_full_name);
+             if ($success) {
+               $data['product_image']=$image_url;
+                  DB::table('tbl_products')->where('product_id',$product_id)->update($data);
+                  Session::put('message','Product added successfully!!');
+                  return Redirect::to('/add-product');
+               // echo "<pre>";
+               // print_r($data);
+               // echo "</pre>";
+               // exit();
+                  
+             }
+             // else{
 
-       // }
-    }
+             // }
+          }else{
+            Session::put('message','Field Image tidak boleh kosong');
+              return Redirect::to('/edit-product/'.$product_id);
+          }
         // echo "<pre>";
         //  print_r($data);
         // echo "</pre>";
