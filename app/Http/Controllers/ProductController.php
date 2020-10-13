@@ -62,29 +62,29 @@ class ProductController extends Controller
         $data['product_color']=$request->product_color;
         $data['publication_status']=$request->publication_status;     
         $image=$request->file('product_image');
-    if ($image) {
-       $image_name=str_random(20);
-       $ext=strtolower($image->getClientOriginalExtension());
-       $image_full_name=$image_name.'.'.$ext;
-       $upload_path='image/';
-       $image_url=$upload_path.$image_full_name;
-       $success=$image->move($upload_path,$image_full_name);
-       if ($success) {
-         $data['product_image']=$image_url;
-            DB::table('tbl_products')->insert($data);
-            Session::put('message','Product added successfully!!');
-            return Redirect::to('/add-product');
-         // echo "<pre>";
-         // print_r($data);
-         // echo "</pre>";
-         // exit();
-            
-       }
-    }
-    $data['product_image']='';
-            DB::table('tbl_products')->insert($data);
-            Session::put('message','product added successfully without image!!');
-            return Redirect::to('/add-product');
+        if ($image) {
+           $image_name=str_random(20);
+           $ext=strtolower($image->getClientOriginalExtension());
+           $image_full_name=$image_name.'.'.$ext;
+           $upload_path='image/';
+           $image_url=$upload_path.$image_full_name;
+           $success=$image->move($upload_path,$image_full_name);
+           if ($success) {
+             $data['product_image']=$image_url;
+                DB::table('tbl_products')->insert($data);
+                Session::put('message','Product added successfully!!');
+                return Redirect::to('/add-product');
+             // echo "<pre>";
+             // print_r($data);
+             // echo "</pre>";
+             // exit();
+                
+           }
+        }
+        $data['product_image']='';
+                DB::table('tbl_products')->insert($data);
+                Session::put('message','product added successfully without image!!');
+      return Redirect::to('/add-product');
 
 
    }
