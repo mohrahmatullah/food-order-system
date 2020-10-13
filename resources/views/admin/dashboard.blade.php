@@ -1,6 +1,6 @@
 @extends('admin_layout')
 @section('admin_content')
-	<ul class="breadcrumb">
+	{{-- <ul class="breadcrumb">
 		<li>
 			<i class="icon-home"></i>
 			<a href="index.html">Home</a> 
@@ -633,9 +633,5 @@
 		
 		<div class="clearfix"></div>
 						
-	</div><!--/row-->
-	
-
-
-
+	</div> --}}
 @endsection
